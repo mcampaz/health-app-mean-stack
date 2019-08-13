@@ -1,0 +1,42 @@
+export class User {
+  constructor(
+    public first_name: string,
+    public last_name: string,
+    public email: string,
+    public user_name: string,
+    public password: string,
+    public role: string,
+    public info: {
+      starting_date: Date,
+      address: string,
+      cell: string,
+      age: number,
+      sex: string,
+      culture: string,
+      doctor_type: string,
+      is_doctor_approved: boolean,
+      frequent_foods: { food: string[] },
+      craving_foods: { food: string[] },
+      current_medications:{ medications: string[] },
+      height: number,
+      current_weight: number,
+      stop_loosing_weight: string,
+      desired_weight: number,
+      abdomen: number,
+      hip: number,
+      primary_goal: string,
+      secondary_goal: string,
+      weekly_number_of_workouts: number,
+      cardio_workout: number,
+      resistance_workout: number,
+      workout_length: number,
+      intake_vitamins: boolean,
+      intake_diet_pills: boolean,
+      intake_minerals: boolean,
+      supplements: string,
+      daily_routine: string
+    },
+    public  health_data: {},
+    public health_solution:{}
+  ){}
+}

@@ -1,0 +1,32 @@
+<div class="jumbotron">
+<p>
+  athlete-info-survey belongs to Coach Area to control the User info form:
+</p>
+
+</div>
+<div class="row pt-5">
+  <div class="col-md-12 mx-auto">
+    <div class="card rounded-0">
+      <div class="card-header">
+        <h3 class="mb-0"> Athlete Info Form</h3>
+      </div>
+      <div class="card-body" >
+        <form class="form" [formGroup]="updateUserInfoForm">
+          <div class="form-group" *ngFor="let item of formInfo; index as i">
+             <label for={{item[0]}}>{{item[0]}}</label>
+             <input [(ngModel)]="item[1]" class="form-control rounded-0"
+                    mame="" id="{{item[0]}}" required
+                    type="text" [ngModelOptions]="{standalone: true}">
+          </div>
+          <button (click)="updateInfoForm()" type="button"
+                  class="btn btn-primary float-right">
+            Update Form
+          </button>
+        </form>
+
+        <p>{{formInfo|json}}</p>
+        <!--<p>{{formInfo|json}}</p>-->
+      </div>
+    </div>
+  </div>
+</div>

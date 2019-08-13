@@ -1,0 +1,340 @@
+<div class="jumbotron ">
+  Athlete-info-form: To display after the athlete gets registered!!
+  <!--<div class="date" [(ngModel)]="user">{{user|json}}</div>-->
+  <p>
+    {{user.first_name}}, Please fill out your information to select
+    your health plan and workout!
+  </p>
+</div>
+
+<div class=" m-5 border border-success card">
+  <!--<p>{{athleteInfoForm.value | json}}</p>
+  <p>{{athleteInfoForm.status | json}}</p>-->
+  <div class="card-header">
+    <h2 class="card-title">Athlete Personal Information</h2>
+  </div>
+  <form (ngSubmit)="onSubmit()" [formGroup]="athleteInfoForm" class="m-3">
+    <div class="form-group input-group-prepend">
+      <label for="starting_date" class="col-form-label-lg"> Date  </label>
+      <input class="form-control col col-md-4 ml-5" type="text" formControlName="starting_date"
+             placeholder="The date you got registered…" id="starting_date" readonly>
+    </div>
+    <div class="form-group" formGroupName="address">
+      <legend class="col-form-label-lg">Address</legend>
+      <div class="form-row">
+        <div class="col-7">
+          <input type="text"
+                 formControlName="city" class="form-control form-control-lg is-valid" placeholder="City" required>
+        </div>
+        <div class="col">
+          <input type="text"
+                formControlName="state"  class="form-control form-control-lg is-valid" placeholder="State" required>
+        </div>
+        <div class="col">
+          <input type="text"
+                 formControlName="zip"  class="form-control form-control-lg" placeholder="Zip" required>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="input-group-prepend">
+        <label for="cell" class="col-form-label-lg">Cell</label>
+        <input type="text" [class.is-invalid]="athleteInfoForm.get('cell').invalid && athleteInfoForm.get('cell').touched"
+               formControlName="cell"  class="form-control form-control-lg col col-md-4 ml-5 is-valid" id="cell"
+               placeholder="555-555-5555" required>
+        <div>
+          <small [class.d-none]="athleteInfoForm.get('cell').valid || athleteInfoForm.get('cell').untouched" class="text-danger">
+            Cell number is required
+          </small><small [class.d-none]="athleteInfoForm.get('cell').valid || athleteInfoForm.get('cell').untouched" class="text-danger">
+            Cell number is required
+          </small>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="input-group-prepend">
+        <label for="age" class="col-form-label-lg">Age</label>
+        <input type="text" [class.is-invalid]="athleteInfoForm.get('age').invalid && athleteInfoForm.get('age').touched"
+               formControlName="age" class="form-control form-control-lg col col-md-2 ml-5 is-valid" id="age"
+               placeholder="Your age..." required>
+      </div>
+    </div>
+    <div class="form-group form-check input-group-prepend col col-md-4">
+        <legend class="col-form-label-lg">Gender</legend>
+        <div class="form-check">
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+              <label class="sr-only" for="sex1">Female</label>
+              <input type="radio" formControlName="sex" aria-label="Gender" id="sex1" value="Female" checked>
+            </div>
+            <input type="text" class="form-control" aria-label="Female" placeholder="Female">
+          </div>
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+              <label class="sr-only" for="sex2">Male</label>
+              <input type="radio" formControlName="sex" id="sex2" value="Male" aria-label="Gender">
+            </div>
+            <input type="text" class="form-control" aria-label="Male" placeholder="Male">
+          </div>
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+              <label class="sr-only" for="sex3">Transgender</label>
+              <input type="radio" formControlName="sex" id="sex3" value="Transgender" aria-label="Gender">
+            </div>
+            <input type="text" class="form-control" aria-label="Transgender" placeholder="Transgender">
+          </div>
+        </div>
+    </div>
+    <div class="form-group form-check input-group-prepend col col-md-8">
+      <legend class="col-form-label-lg">What type of doctor do you visit?</legend>
+      <div class="form-check">
+        <div class="input-group-prepend">
+          <div class="input-group-text">
+            <label class="sr-only" for="doctor_type1">Naturopath</label>
+            <input type="radio"  formControlName="doctor_type" aria-label="Doctor Type: Naturopath" id="doctor_type1" value="Naturopath" checked>
+          </div>
+          <input type="text" class="form-control" aria-label="Female" placeholder="Naturopath">
+        </div>
+        <div class="input-group-prepend">
+          <div class="input-group-text">
+            <label class="sr-only" for="doctor_type2">Allopath</label>
+            <input type="radio"  formControlName="doctor_type" id="doctor_type2" value="Allopath" aria-label="Doctor Type: Allopath">
+          </div>
+          <input type="text" class="form-control" aria-label="Male" placeholder="Allopath">
+        </div>
+        <div class="input-group-prepend">
+          <div class="input-group-text">
+            <label class="sr-only" for="doctor_type3">Both</label>
+            <input type="radio"  formControlName="doctor_type" id="doctor_type3" value="Both" aria-label="Doctor Type: both">
+          </div>
+          <input type="text" class="form-control" aria-label="Both Medicines" placeholder="Both">
+        </div>
+      </div>
+    </div>
+    <div class="form-group form-check input-group-prepend ">
+      <legend class="col-form-label-lg">Has your doctor ever said that you have a heart condition
+        and that you should only do physical activity recommended by a doctor?</legend>
+      <div class="form-check col col-md-2">
+        <div class="input-group-prepend">
+          <div class="input-group-text">
+            <label class="sr-only" for="doctor_consent1">Yes</label>
+            <input type="radio"  formControlName="is_doctor_approved" aria-label="Has doctor consent?" id="doctor_consent1" value="true" checked>
+          </div>
+          <input type="text" class="form-control" aria-label="Yes, doctor consent" placeholder="Yes...">
+        </div>
+        <div class="input-group-prepend">
+          <div class="input-group-text">
+            <label class="sr-only" for="doctor_consent2">No</label>
+            <input type="radio"  formControlName="is_doctor_approved" id="doctor_consent2" value="false" aria-label="No, doctor consent">
+          </div>
+          <input type="text" class="form-control" aria-label="Male" placeholder="No...">
+        </div>
+      </div>
+    </div>
+    <div class="form-group col col-md-12">
+      <div class="input-group-prepend ">
+        <label for="frequent_foods" class="col-form-label-lg">List the kind of foods you eat the most</label>
+        <input type="text" [class.is-invalid]="athleteInfoForm.get('frequent_foods').invalid && athleteInfoForm.get('frequent_foods').touched"
+               formControlName="frequent_foods" class="form-control form-control-lg col col-md-6 ml-5 is-valid"
+               id="frequent_foods" placeholder="Your most frequent food..." required>
+      </div>
+    </div>
+    <div class="form-group col col-md-12">
+      <div class="input-group-prepend">
+        <label for="craving_foods" class="col-form-label-lg">List the Kind of food you CRAVE the most</label>
+        <input type="text" [class.is-invalid]="athleteInfoForm.get('craving_foods').invalid && athleteInfoForm.get('craving_foods').touched"
+               formControlName="craving_foods" class="form-control form-control-lg col col-md-6 ml-5 is-valid"
+               id="craving_foods" placeholder="Your most craving foods..." required>
+      </div>
+    </div>
+    <div class="form-group col col-md-12">
+      <div class="input-group-prepend">
+        <label for="current_medications" class="col-form-label-lg">Please list any medication that you are currently taking</label>
+        <input type="text" [class.is-invalid]="athleteInfoForm.get('current_medications').invalid && athleteInfoForm.get('current_medications').touched"
+               formControlName="current_medications"  class="form-control form-control-lg col col-md-4 ml-2 is-valid"
+               id="current_medications" placeholder="List your current medicines..." required>
+      </div>
+    </div>
+    <div class="form-group col col-md-12">
+      <div class="input-group-prepend">
+        <label for="culture" class="col-form-label-lg">Cultural Background</label>
+        <input type="text" [class.is-invalid]="athleteInfoForm.get('culture').invalid && athleteInfoForm.get('culture').touched"
+               formControlName="culture" class="form-control form-control-lg col col-md-6 ml-5 is-valid"
+               id="culture" placeholder="Your culture..." required>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="input-group-prepend">
+        <label for="height" class="col-form-label-lg">Height</label>
+        <input type="text" [class.is-invalid]="athleteInfoForm.get('height').invalid && athleteInfoForm.get('height').touched"
+               formControlName="height"  class="form-control form-control-lg col col-md-3 ml-2 is-valid"
+               id="height" placeholder="Your height..." required>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="input-group-prepend">
+        <label for="current_weight" class="col-form-label-lg">Current Weight</label>
+        <input type="text" [class.is-invalid]="athleteInfoForm.get('current_weight').invalid && athleteInfoForm.get('current_weight').touched"
+               formControlName="current_weight"  class="form-control form-control-lg col col-md-3 ml-2 is-valid"
+               id="current_weight" placeholder="Your weight..." required>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="input-group-prepend">
+        <label for="stop_loosing_weight" class="col-form-label-lg">Time when stopped losing weight</label>
+        <input type="text" [class.is-invalid]="athleteInfoForm.get('stop_loosing_weight').invalid && athleteInfoForm.get('stop_loosing_weight').touched"
+               formControlName="stop_loosing_weight"  class="form-control form-control-lg col col-md-5 ml-2 is-valid"
+               id="stop_loosing_weight" placeholder="Stop losing weight..." required>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="input-group-prepend">
+        <label for="desired_weight" class="col-form-label-lg">Desirable Weight</label>
+        <input type="text" [class.is-invalid]="athleteInfoForm.get('desired_weight').invalid && athleteInfoForm.get('desired_weight').touched"
+               formControlName="desired_weight"  class="form-control form-control-lg col col-md-3 ml-2 is-valid"
+               id="desired_weight" placeholder="desired weight...">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="input-group-prepend">
+        <label for="abdomen" class="col-form-label-lg">Abdomen</label>
+        <input type="text" [class.is-invalid]="athleteInfoForm.get('abdomen').invalid && athleteInfoForm.get('abdomen').touched"
+               formControlName="abdomen"  class="form-control form-control-lg col col-md-3 ml-2 is-valid"
+               id="abdomen" placeholder="Your abdomen..." required>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="input-group-prepend">
+        <label for="hip" class="col-form-label-lg">Hip</label>
+        <input type="text" [class.is-invalid]="athleteInfoForm.get('hip').invalid && athleteInfoForm.get('hip').touched"
+               formControlName="hip"  class="form-control form-control-lg col col-md-3 ml-2 is-valid"
+               id="hip" placeholder="Your hip..." required>
+      </div>
+    </div>
+    <div class="form-group col col-md-12">
+      <div class="input-group-prepend">
+        <label for="primary_goal" class="col-form-label-lg">PRIMARY GOAL</label>
+        <input type="text" [class.is-invalid]="athleteInfoForm.get('primary_goal').invalid && athleteInfoForm.get('primary_goal').touched"
+               formControlName="primary_goal"  class="form-control form-control-lg col col-md-4 ml-2 is-valid"
+               id="primary_goal" placeholder="Your PRIMARY GOAL..." required>
+      </div>
+    </div>
+    <div class="form-group col col-md-12">
+      <div class="input-group-prepend">
+        <label for="secondary_goal" class="col-form-label-lg">Secondary Goal</label>
+        <input type="text" [class.is-invalid]="athleteInfoForm.get('secondary_goal').invalid && athleteInfoForm.get('secondary_goal').touched"
+               formControlName="secondary_goal"  class="form-control form-control-lg col col-md-4 ml-2 is-valid"
+               id="secondary_goal" placeholder="Your secondary goal..." required>
+      </div>
+    </div>
+    <div class="form-group col col-md-12">
+      <div class="input-group-prepend">
+        <label for="weekly_workouts" class="col-form-label-lg">How many times/wk do you feel you can exercise?</label>
+        <input type="text" [class.is-invalid]="athleteInfoForm.get('weekly_workouts').invalid && athleteInfoForm.get('weekly_workouts').touched"
+               formControlName="weekly_workouts"  class="form-control form-control-lg col col-md-3 ml-2 mr-2 is-valid"
+               id="weekly_workouts" placeholder="Your workout frequency..." required>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="input-group-prepend">
+        <label for="cardio_workout" class="col-form-label-lg ml-2">Cardio</label>
+        <input type="text" [class.is-invalid]="athleteInfoForm.get('cardio_workout').invalid && athleteInfoForm.get('cardio_workout').touched"
+               formControlName="cardio_workout"  class="form-control form-control-lg col col-md-3 ml-2 is-valid"
+               id="cardio_workout" placeholder="Your cardio workout..." required>
+      </div>
+    </div>
+    <div class="form-group ">
+      <div class="input-group-prepend">
+        <label for="resistance_workout" class="col-form-label-lg  mr-5">Resistance</label>
+        <input type="text" [class.is-invalid]="athleteInfoForm.get('resistance_workout').invalid && athleteInfoForm.get('resistance_workout').touched"
+               formControlName="resistance_workout"  class="form-control form-control-lg col col-md-4 is-valid"
+               id="resistance_workout" placeholder="Your resistance workout..." required>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="input-group-prepend">
+        <label for="workout_length" class="col-form-label-lg mr-3">How many minutes?</label>
+        <input type="text" [class.is-invalid]="athleteInfoForm.get('workout_length').invalid && athleteInfoForm.get('workout_length').touched"
+               formControlName="workout_length"  class="form-control form-control-lg col col-md-4 is-valid"
+               id="workout_length" placeholder="How long do you workout..." required>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="input-group-prepend">
+        <label for="daily_routine" class="col-form-label-lg col col-md-6">Describe the activity in your daily (job) routine</label>
+        <input type="text" [class.is-invalid]="athleteInfoForm.get('daily_routine').invalid && athleteInfoForm.get('daily_routine').touched"
+               formControlName="daily_routine"  class="form-control form-control-lg col col-md-5  is-valid"
+               id="daily_routine" placeholder="describe your daily activity..." required>
+      </div>
+    </div>
+    <div class="form-group form-check input-group-prepend col col-md-12">
+      <legend class="col col-form-label-lg col-md-4">Do you take any vitamins?</legend>
+      <div class="form-check">
+        <div class="input-group-prepend col-md-6">
+          <div class="input-group-text">
+            <label class="sr-only" for="intake_vitamins1">Yes</label>
+            <input type="radio"  formControlName="intake_vitamins" aria-label="Yes intake of vitamins" id="intake_vitamins1" value="true" checked>
+          </div>
+          <input type="text" class="form-control" aria-label="Yes intake of vitamins" placeholder="Yes...">
+        </div>
+        <div class="input-group-prepend col-md-6">
+          <div class="input-group-text">
+            <label class="sr-only" for="intake_vitamins2">No</label>
+            <input type="radio"  formControlName="intake_vitamins" id="intake_vitamins2" value="false" aria-label="No intake of vitamins">
+          </div>
+          <input type="text" class="form-control" aria-label="No intake of vitamins" placeholder="No...">
+        </div>
+      </div>
+    </div>
+    <div class="form-group form-check input-group-prepend col col-md-8">
+      <legend class="col col-form-label-lg col-md-3">Diet pills?</legend>
+      <div class="form-check">
+        <div class="input-group-prepend col-md-6">
+          <div class="input-group-text">
+            <label class="sr-only" for="intake_diet_pills1">Yes</label>
+            <input type="radio"  formControlName="intake_diet_pills" aria-label="Taking diet pills" id="intake_diet_pills1" value="true" checked>
+          </div>
+          <input type="text" class="form-control" aria-label="Taking diet pills" placeholder="Yes...">
+        </div>
+        <div class="input-group-prepend col col-md-6">
+          <div class="input-group-text">
+            <label class="sr-only" for="intake_diet_pills2">No</label>
+            <input type="radio"  formControlName="intake_diet_pills" id="intake_diet_pills2" value="false" aria-label="Not taking diet pills">
+          </div>
+          <input type="text" class="form-control" aria-label="Not taking diet pills" placeholder="No...">
+        </div>
+      </div>
+    </div>
+    <div class="form-group form-check input-group-prepend">
+      <legend class="col col-form-label-lg col-md-4">Minerals?</legend>
+      <div class="form-check">
+        <div class="input-group-prepend col-md-6">
+          <div class="input-group-text">
+            <label class="sr-only" for="intake_minerals1">Yes</label>
+            <input type="radio"  formControlName="intake_minerals" aria-label="Doctor Type" id="intake_minerals1" value="true" ng-c checked>
+          </div>
+          <input type="text" class="form-control" aria-label="Taking minerals" placeholder="Yes...">
+        </div>
+        <div class="input-group-prepend col-md-6">
+          <div class="input-group-text">
+            <label class="sr-only" for="intake_minerals2">No</label>
+            <input type="radio"  formControlName="intake_minerals" id="intake_minerals2" value="false" aria-label="Not taking minerals">
+          </div>
+          <input type="text" class="form-control" aria-label="Not taking minerals" placeholder="No..." required>
+        </div>
+      </div>
+    </div>
+    <div class="form-group col col-md-12">
+      <div class="input-group-prepend">
+        <label for="supplements" class="col-form-label-lg">What Supplements?</label>
+        <input type="text" [class.is-invalid]="athleteInfoForm.get('supplements').invalid && athleteInfoForm.get('supplements').touched"
+               formControlName="supplements"  class="form-control form-control-lg col col-md-8 ml-5 is-valid"
+               id="supplements" placeholder="Lists your medical supplements..." required>
+      </div>
+    </div>
+    <div class="row justify-content-end">
+      <button type="submit" class="btn btn-primary btn-lg col  col-md-3 m-5 align-self-end">Save</button>
+    </div>
+  </form>
+
+</div>

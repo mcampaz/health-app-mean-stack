@@ -1,0 +1,41 @@
+<div class="container-fluid">
+  <h1>Athlete Basic Information</h1>
+  <form #userForm="ngForm">
+    <p>{{userForm.value|json}}</p>
+    <p>{{userInfoData|json}}</p>
+    <p>{{this_address.untouched}}</p>
+    <p>{{userForm.invalid}}</p>
+    <div class="form-group">
+      <label for="address">Address</label>
+      <input [(ngModel)]="userInfoData.info.address" mame="address" type="text"
+             class="form-control rounded-0"  id="address"
+             [ngModelOptions]="{standalone: true}" #this_address="ngModel" required>
+            <div class="text-danger" *ngIf="this_address.invalid && this_address.touched">
+              <small class="text-danger">A valid address is required</small>
+            </div>
+    </div>
+    <div class="form-group">
+      <label for="cell">Cell</label>
+      <input [(ngModel)]="userInfoData.info.cell" mame="cell" type="tel"
+             class="form-control rounded-0" id="cell"
+             [ngModelOptions]="{standalone: true}" required>
+    </div>
+
+    <div class="form-group">
+      <label for="doctor_type">What type of doctor do you visit, Naturopath  Allopath?  </label>
+      <select [(ngModel)]="userInfoData.info.doctor_type" mame="doctor_type"
+              [ngModelOptions]="{standalone: true}" required
+              class="custom-select form-control rounded-0" id="doctor_type">
+        <option *ngFor="let doctor of doctorType" >{{ doctor }}</option>
+      </select>
+    </div>
+
+
+
+
+    <button [disabled]="!userForm.form.valid" (click)="addInfoUser(userForm)" type="button"
+            class="btn btn-primary float-right">
+      Add Information
+    </button>
+  </form>
+</div>
