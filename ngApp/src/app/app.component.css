@@ -1,8 +1,8 @@
-#nav {
+.navbar, .navbar-brand {
   text-decoration-color: black;
-  font-size: large;
+  font-size: xx-large;
+  color: white;
 }
-button{
-  text-decoration-color: white;
-
+h1.navbar-brand {
+  font-weight: bold;
 }
